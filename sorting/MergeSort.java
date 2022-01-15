@@ -7,8 +7,7 @@ public class MergeSort{
 
     public static void main(String[] args) {
 
-        int[]  randomIntsArray = IntStream.generate(() ->
-                new Random().nextInt(10000000)).limit(10000000).toArray();
+        int[]  randomIntsArray = IntStream.generate(() -> new Random().nextInt(10000000)).limit(10000000).toArray();
 
         //Just to check how much time the algorithm is going to take.
         System.out.println(LocalDateTime.now());

@@ -18,15 +18,24 @@ public class MergeSort{
 
     }
 
-    private static int[] mergeSort(int[] list) {
+    private static void mergeSort(int[] list) {
 
         int half = list.length / 2, length = list.length;
 
-        return length < 2 ? list : merge(list, mergeSort(Arrays.copyOfRange(list, 0, half)), mergeSort(Arrays.copyOfRange(list, half, length)));
+        if (length < 2)
+            return;
+
+        int[] left = Arrays.copyOfRange(list, 0, half);
+        int[] right = Arrays.copyOfRange(list, half, length);
+
+        mergeSort(left);
+        mergeSort(right);
+
+        merge(list, left, right);
 
     }
 
-    private static int[] merge(int[] sortedArr, int[] lowerArr, int[] upperArr) {
+    private static void merge(int[] sortedArr, int[] lowerArr, int[] upperArr) {
 
         int n = lowerArr.length, m = upperArr.length;
 
@@ -43,7 +52,5 @@ public class MergeSort{
         while(j < m){
             sortedArr[k++] = upperArr[j++];
         }
-
-        return sortedArr;
     }
 }

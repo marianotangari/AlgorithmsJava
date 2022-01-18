@@ -43,7 +43,6 @@ public class QuickSort{
                 arr[j] = temp;
 
             }
-
         }
 
         temp = arr[++i];

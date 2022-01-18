@@ -20,10 +20,12 @@ public class MergeSort{
 
     private static void mergeSort(int[] list) {
 
-        int half = list.length / 2, length = list.length;
+        int length = list.length;
 
         if (length < 2)
             return;
+
+        int half = list.length / 2;
 
         int[] left = Arrays.copyOfRange(list, 0, half);
         int[] right = Arrays.copyOfRange(list, half, length);

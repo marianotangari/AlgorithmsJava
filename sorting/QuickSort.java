@@ -30,7 +30,7 @@ public class QuickSort{
         }
     }
 
-    private static int partition(int[] arr, int p, int pivot){
+    static int partition(int[] arr, int p, int pivot){
 
         int i = p, x = arr[pivot];
 

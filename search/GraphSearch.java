@@ -10,7 +10,7 @@ public class GraphSearch {
 
         Graph<String> graph = initializeGraph(queue);
 
-        dfs(graph, queue);
+        bfs(graph, queue);
     }
 
     private static Graph<String> initializeGraph(LinkedList<Vertex<String>> queue) {
@@ -78,7 +78,7 @@ public class GraphSearch {
         return graph;
     }
 
-    private static void dfs(Graph<String> graph, LinkedList<Vertex<String>> queue) {
+    private static void bfs(Graph<String> graph, LinkedList<Vertex<String>> queue) {
 
         while(!queue.isEmpty()){
 

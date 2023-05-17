@@ -1,12 +1,10 @@
 import java.util.Arrays;
 
 public class HeapSort {
-
     public static void main(String[] args) {
 
         //input array.
         int[] array = {2, 4, 13, 5, 17, 9, 8 ,6, 10, 1, 11, 14, 7, 20, 23, 24};
-
         heapSort(array);
 
         //printing the output.
@@ -34,7 +32,6 @@ public class HeapSort {
             maxHeapify(arr, i, size);
         }
     }
-
     private static void maxHeapify(int[] arr, int i, int size) {
 
         int largest = i;
@@ -47,13 +44,11 @@ public class HeapSort {
         if (right <= size && arr[right] > arr[largest]) {
             largest = right;
         }
-
         if (largest != i) {
             swap(arr, i, largest);
             maxHeapify(arr, largest, size);
         }
     }
-
     private static void swap(int[] arr, int i, int element) {
         int temp = arr[i];
         arr[i] = arr[element];

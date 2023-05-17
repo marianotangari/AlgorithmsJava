@@ -1,7 +1,6 @@
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.HashMap;
-
 public class GraphSearch {
 
     public static void main(String[] args) {

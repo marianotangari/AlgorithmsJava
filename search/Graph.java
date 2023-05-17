@@ -1,5 +1,3 @@
-package io.github.marianotangari.decorator;
-
 import java.util.LinkedList;
 import java.util.HashMap;
 import java.util.Map;

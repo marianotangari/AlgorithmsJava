@@ -53,22 +53,22 @@ public class DagTopologicalSort {
 		
         ArrayDeque<Vertex<String>> stack = new ArrayDeque<>(); 
 		
-		int time = 0;
+	int time = 0;
 		
-		a.setD(0);
+	a.setD(0);
 		
-		for (Vertex<String> u : graph.getVertices()) {
+	for (Vertex<String> u : graph.getVertices()) {
             if (u.getColor() == Vertex.Color.WHITE) {
                 dfsVisit(graph, u, stack, time);
-			}
+	    }
         }
 		
-		while(!stack.isEmpty()) {
-			System.out.println(stack.pop().getValue()); 
-		}
+	while(!stack.isEmpty()) {
+		System.out.println(stack.pop().getValue()); 
+	}
     }
 
-     static <T> void dfsVisit(Digraph<T> graph, Vertex<T> u, ArrayDeque<Vertex<T>> stack, int time) {
+    static <T> void dfsVisit(Digraph<T> graph, Vertex<T> u, ArrayDeque<Vertex<T>> stack, int time) {
         time++;
         u.setD(time);
         u.setColor(Vertex.Color.GRAY);

@@ -27,21 +27,23 @@ public class StronglyConnectedComponents {
         List<Vertex<String>> listD = new ArrayList<>();
         List<Vertex<String>> listE = new ArrayList<>();
 		
-		listA.add(b); 
-		listB.add(c);
-		listC.add(a);
+		listA.add(c); 
+		listA.add(d); 
+		listB.add(a);
+		listC.add(b);
 			  
-		listD.add(a);
-		listE.add(d); 
+		listD.add(e);
 			
 		Digraph<String> digraph = new Digraph<>(); 
-			
-		graph.addVertexList(a, listA);
-		graph.addVertexList(b, listB);
-		graph.addVertexList(c, listC);
+	
+		
 		graph.addVertexList(d, listD);
 		graph.addVertexList(e, listE);
+		graph.addVertexList(a, listA);
+		graph.addVertexList(c, listC);
+		graph.addVertexList(b, listB);
 		
+
 		//Stack.
 		ArrayDeque<Vertex<String>> stack = new ArrayDeque<>(); 
 			
@@ -52,8 +54,12 @@ public class StronglyConnectedComponents {
 			}
 		}
 		
+		System.out.println(graph); 
+		
 		//Second step: transposing the digraph. 
 		transposeGraph(graph); 
+		
+		System.out.println(graph); 
 		
 		//Additional step: setting all vertices as non visited. 
 		graph.getAdjList().forEach((k,v) -> k.setVisited(false)); 
@@ -63,44 +69,44 @@ public class StronglyConnectedComponents {
 		var adjList = graph.getAdjList();
 		
 		//Third step. 
-		for (Map.Entry<Vertex<String>, List<Vertex<String>>> entry : adjList.entrySet()) {
-			Set<Vertex<String>> components = new HashSet<>(); 
-			if (!entry.getKey().isVisited()) {
-				secondDfs(graph, adjList, stack, components);
+		while (!stack.isEmpty()) {
+			Vertex<String> v = stack.pop(); 
+			if (!v.isVisited()) {
+				System.out.println(secondDfs(v, adjList, stack, new HashSet<Vertex<String>>()));
 			}
-			connectedComponents.add(components); 
 		}
-		
-		connectedComponents.forEach(System.out::println);
     }
 
     static <T> void firstDfs(Digraph<T> graph, Map.Entry<Vertex<T>, List<Vertex<T>>> entry,
 		ArrayDeque<Vertex<T>> stack) {
 			
 		Vertex<T> key = entry.getKey();
+		key.setVisited(true);
         
         for (Vertex<T> v : entry.getValue()) {
-            if (!key.isVisited()) {
-				key.setVisited(true); 
+            if (!v.isVisited()) {
+				v.setVisited(true); 
                 firstDfs(graph, entry, stack);
             }
         }
 		//Insert every vertex into the stack as it is finished.
-		stack.offer(key); 
+		stack.push(key); 
     }
 	
-	static <T> void secondDfs(Digraph<T> graph, Map<Vertex<T>, List<Vertex<T>>> adjList,
+	static <T> Set<Vertex<T>> secondDfs(Vertex<T> vertex, Map<Vertex<T>, List<Vertex<T>>> adjList,
 		ArrayDeque<Vertex<T>> stack, Set<Vertex<T>> components) {
 		
-		List<Vertex<T>> list = adjList.get(stack.poll()); 
-        
-        for (Vertex<T> v : list) {
-            if (!v.isVisited()) {
+		List<Vertex<T>> list = adjList.get(vertex);
+		
+		for (Vertex<T> v : list) {
+			if (!v.isVisited()) {
+				components.add(vertex);
 				components.add(v);
 				v.setVisited(true); 
-                secondDfs(graph, adjList, stack, components);
-            }
-        }
+				secondDfs(v, adjList, stack, components); 
+			}
+		}
+		return components;
     }
 	
 	static <T> void transposeGraph(Digraph<T> graph) {
@@ -144,6 +150,11 @@ public class StronglyConnectedComponents {
 	void setAdjList(Map<Vertex<T>, List<Vertex<T>>> adjList) {
 		this.adjList = adjList; 
 	}
+	
+	@Override
+	public String toString() {
+		return adjList.toString();
+	}
 }
 
 class Vertex<T> {
@@ -161,5 +172,10 @@ class Vertex<T> {
 	
 	public boolean isVisited() {
 		return visited; 
+	}
+	
+	@Override
+	public String toString() {
+		return this.value.toString(); 
 	}
 }

@@ -2,9 +2,7 @@ import java.util.*;
 
 public class HuffmanEncoder {
 
-        public static void main(String[] args) {
-            encode(args[0]);
-        }
+        public static void main(String[] args) { encode(args[0]); }
 
         private static void encode(String str) {
             HuffmanNode tree = buildHuffmanTree(buildNodeMap(str));
@@ -71,10 +69,7 @@ class HuffmanNode implements Comparable<HuffmanNode>{
     }
     @Override
     public int compareTo(HuffmanNode o) {
-        if (o.getFreq() >= this.getFreq()) {
-            return -1;
-        }
-        return 1;
+        return o.getFreq() > this.getFreq() ? -1 : 1;
     }
 
     public void printBfs() {
@@ -103,7 +98,6 @@ class HuffmanLeaf extends HuffmanNode {
     public char getLetter() {
         return letter;
     }
-
     @Override
     public String toString() {
         return String.format("Leaf freq: %d, char: %c", this.getFreq(), this.getLetter());

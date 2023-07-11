@@ -1,5 +1,6 @@
 import java.util.*;
 
+//Implementation of Huffman algorithm to build a prefix-free tree for a given text
 public class HuffmanEncoder {
 
         public static void main(String[] args) { encode(args[0]); }

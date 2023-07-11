@@ -9,6 +9,7 @@ public class HuffmanEncoder {
             tree.printBfs();
         }
 
+        //Building a map of nodes to calculate characters frequency.
         private static Map<Character, HuffmanNode> buildNodeMap(String str) {
 
             Map<Character, HuffmanNode> map = new HashMap<>();
@@ -21,6 +22,7 @@ public class HuffmanEncoder {
             return map;
         }
 
+        //Huffman algorithm (CLRS 4th edition version).
         private static HuffmanNode buildHuffmanTree(Map<Character, HuffmanNode> map) {
 
             PriorityQueue<HuffmanNode> queue = new PriorityQueue<HuffmanNode>();
@@ -35,7 +37,7 @@ public class HuffmanEncoder {
             return queue.poll();
         }
 }
-
+//Superclass representing a tree internal node.
 class HuffmanNode implements Comparable<HuffmanNode>{
 
     private HuffmanNode left;
@@ -72,8 +74,8 @@ class HuffmanNode implements Comparable<HuffmanNode>{
         return o.getFreq() > this.getFreq() ? -1 : 1;
     }
 
+    // A BFS traversal to print all nodes from each level of the tree. Used to check if the tree was built properly.
     public void printBfs() {
-
         HuffmanNode node = this;
         ArrayDeque<HuffmanNode> queue = new ArrayDeque<>();
         queue.offer(node);
@@ -86,7 +88,7 @@ class HuffmanNode implements Comparable<HuffmanNode>{
         }
     }
 }
-
+//Subclass representing a tree leaf.
 class HuffmanLeaf extends HuffmanNode {
 
     private char letter;

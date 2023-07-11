@@ -1,2 +1,2 @@
 # AlgorithmsJava
-A collection of Algorithms implemented in Java. 
+A collection of algorithms and fundamental data structures implemented in Java. 

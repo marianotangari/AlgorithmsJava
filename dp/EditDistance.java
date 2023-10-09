@@ -54,6 +54,6 @@ public class EditDistance {
 	}
 	
 	private static int getMin(int... values) {
-        return Arrays.stream(values).reduce(Integer.MAX_VALUE, Math::min); 
+		return Arrays.stream(values).reduce(Integer.MAX_VALUE, Math::min);
     }
 }

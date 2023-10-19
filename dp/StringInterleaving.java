@@ -26,6 +26,7 @@ public class StringInterleaving {
 		System.out.println(bottomUpIsInterleaving("dr", "raffda", "drrffada"));
 		System.out.println(bottomUpIsInterleaving("b", "c", "bb"));
 		System.out.println(bottomUpIsInterleaving("b", "c", "b"));
+		System.out.println(bottomUpIsInterleaving("ddhe","kkhekd", "kddkheehkd"));
 	}
 
 	private static boolean isInterleavingStringNoRepetitions(String str1, String str2, String str3) {
@@ -95,11 +96,11 @@ public class StringInterleaving {
 		int length2 = str2.length();
 
 		for (int i = 1; i <= length1; i++) {
-			tab[i][0] = tab[i - 1][0] && str1.charAt(i - 1) == str3.charAt(0);
+			tab[i][0] = tab[i - 1][0] && str1.charAt(i - 1) == str3.charAt(i - 1);
 		}
 
 		for (int j = 1; j <= length2; j++) {
-			tab[0][j] = tab[0][j - 1] && str2.charAt(j - 1) == str3.charAt(0);
+			tab[0][j] = tab[0][j - 1] && str2.charAt(j - 1) == str3.charAt(j - 1);
 		}
 
 		for (int i = 1; i <= length1; i++) {

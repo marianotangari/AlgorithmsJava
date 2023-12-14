@@ -1,7 +1,25 @@
 public class LongestCommonSubsequence {
 
+    //Top-Down approach with Memoization.
+    public Integer longestCommonSubsequenceTopDown(String text1, String text2, int i, int j, Integer[][] memo) {
+
+        if (i < 0 || j < 0) return 0;
+
+        if (memo[i][j] != null) return memo[i][j];
+
+        if (text1.charAt(i) == text2.charAt(j)) {
+            memo[i][j] = 1 + longestCommonSubsequenceTopDown(text1, text2, i - 1, j - 1, memo);
+        } else {
+            memo[i][j] = Math.max(
+                    longestCommonSubsequenceTopDown(text1, text2, i, j - 1, memo),
+                    longestCommonSubsequenceTopDown(text1, text2, i - 1, j, memo));
+        }
+
+        return memo[i][j];
+    }
+
     //DP - Bottom Up with tabulation
-    public int longestCommonSubsequence(String text1, String text2) {
+    public int longestCommonSubsequenceBottomUp(String text1, String text2) {
 
         int length1 = text1.length();
         int length2 = text2.length();

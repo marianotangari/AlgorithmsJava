@@ -2,10 +2,13 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
 
+//Topological sort implementing Kahn's Algorithm (BFS)
 public class TopologicalSort {
 
     public static void main(String[] args) {
 
+        //Array index represent a vertex in the graph.
+        //The following graph contains 5 vertices 0,1,2,3 and 4.
         int[][] input = {{1,2}, {3,4}, {3}, {4}, {}};
         int[] dg = buildInDegreeArray(input);
 
@@ -36,6 +39,7 @@ public class TopologicalSort {
         System.out.println(output);
     }
 
+    //We calculate the initial set of vertices with in degree == 0.
     private static int[] buildInDegreeArray(int[][] in) {
 
         int[] dg = new int[in.length];

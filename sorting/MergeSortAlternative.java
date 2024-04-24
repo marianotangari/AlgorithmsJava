@@ -1,5 +1,4 @@
 import java.util.LinkedList;
-import java.util.Arrays;
 import java.util.Random;
 import java.util.stream.IntStream;
 import java.time.LocalDateTime;
@@ -8,7 +7,7 @@ import java.time.LocalDateTime;
 /**
  * Alternative MergeSort implementation using queues.
  */
-public class MergeSort {
+public class MergeSortAlternative{
 
     public static void main(String[] args) {
 

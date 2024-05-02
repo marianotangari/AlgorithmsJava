@@ -7,7 +7,7 @@ public class UnionFind {
 
         private final int val;
         private TreeNode parent;
-        private int rank = 1;
+        private int rank = 0;
 
         private TreeNode(int val) {
             this.val = val;
@@ -56,15 +56,13 @@ public class UnionFind {
     private static void link(TreeNode x, TreeNode y) {
 
         if (x != y) {
-
-            int newRank = x.rank + y.rank;
-
-            if (x.rank >= y.rank) {
+            if (x.rank == y.rank) {
                 y.parent = x;
-                x.rank = newRank;
+                x.rank++;
+            } else if (x.rank > y.rank) {
+                y.parent = x;
             } else {
                 x.parent = y;
-                y.rank = newRank;
             }
         }
     }

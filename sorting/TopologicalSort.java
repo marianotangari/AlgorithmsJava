@@ -7,7 +7,7 @@ public class TopologicalSort {
 
     public static void main(String[] args) {
 
-        //Array index represent a vertex in the graph.
+        //Array index represents a vertex in the graph.
         //The following graph contains 5 vertices 0,1,2,3 and 4.
         int[][] input = {{1,2}, {3,4}, {3}, {4}, {}};
         int[] dg = buildInDegreeArray(input);

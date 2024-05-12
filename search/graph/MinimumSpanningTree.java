@@ -1,8 +1,8 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
+/**
+ * Minimum Spanning Tree using Kruskal and Prim Algorithms.
+ */
 public class MinimumSpanningTree {
 
     public static void main(String[] args) {
@@ -47,8 +47,13 @@ public class MinimumSpanningTree {
         }
     }
 
-    private static void primMst() {
-        //TODO complete Prim's algorithm for MSTs.
+    private static void primMst(List<WeightedEdge> edges) {
+
+        var adjList = buildAdjList(edges);
+
+        //TODO find min edge weight for each weighted edges.
+
+        PriorityQueue<TreeNodeWithKey> minHeap = new PriorityQueue<>((a,b) -> b.key - a.key);
     }
 
     private static void makeSet(List<TreeNode> nodes, int value) {
@@ -100,13 +105,39 @@ public class MinimumSpanningTree {
 
     private static class TreeNode {
 
-        private final int val;
-        private TreeNode parent;
-        private int rank = 0;
+        protected final int val;
+        protected TreeNode parent;
+        protected int rank = 0;
 
         private TreeNode(int val) {
             this.val = val;
             this.parent = this;
         }
     }
+
+    private static class TreeNodeWithKey extends TreeNode {
+
+        private final int key;
+
+        private TreeNodeWithKey(int val, int key) {
+            super(val);
+            this.key = key;
+        }
+    }
+
+    private static Map<Integer, List<int[]>> buildAdjList(List<WeightedEdge> edges) {
+
+        Map<Integer, List<int[]>> adjList = new HashMap<>();
+
+        for (var e : edges) {
+
+            int x = e.edge[0];
+            int y = e.edge[1];
+
+            adjList.computeIfAbsent(x, v -> new ArrayList<>()).add(new int[]{y, e.weight});
+            adjList.computeIfAbsent(y, v -> new ArrayList<>()).add(new int[]{x, e.weight});
+        }
+
+        return adjList;
+     }
 }
